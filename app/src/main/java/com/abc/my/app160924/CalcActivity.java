@@ -14,6 +14,11 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
     TextView tv_result_num;
     int result;
 
+    CalcService service = new CalcSeriviceImpl();
+
+    CalcDTO cal = new CalcDTO();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,21 +46,30 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         int num1 = Integer.parseInt(et_num_1.getText().toString());
         int num2 = Integer.parseInt(et_num_2.getText().toString());
+
+        cal.setNum1(num1);
+        cal.setNum1(num2);
+
         switch (v.getId()){
             case R.id.bt_plus :
-                result = num1 + num2;
+                result = service.plus(cal).getResult();
+                //result = num1 + num2;
                 break;
             case R.id.bt_minus :
-                result = num1 - num2;
+                result = service.minus(cal).getResult();
+                //result = num1 - num2;
                 break;
             case R.id.bt_divide :
-                result = num1 / num2;
+                result = service.divide(cal).getResult();
+                //result = num1 / num2;
                 break;
             case R.id.bt_multi :
-                result = num1 * num2;
+                result = service.multi(cal).getResult();
+                //result = num1 * num2;
                 break;
             case R.id.bt_remain :
-                result = num1 % num2;
+                result = service.remain(cal).getResult();
+                //result = num1 % num2;
                 break;
             case R.id.bt_equal :
                 tv_result_num.setText("계산 결과 : "+result);
