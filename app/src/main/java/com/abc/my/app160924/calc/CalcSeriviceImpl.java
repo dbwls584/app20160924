@@ -16,21 +16,37 @@ public class CalcSeriviceImpl implements CalcService {
 
     @Override
     public CalcDTO minus(CalcDTO cal) {
-        return null;
+            int num1 = cal.getNum1();
+            int num2 = cal.getNum2();
+            int result = num1 - num2;
+            cal.setResult(result);
+            return cal;
     }
 
     @Override
     public CalcDTO multi(CalcDTO cal) {
-        return null;
+        int num1 = cal.getNum1();
+        int num2 = cal.getNum2();
+        int result = num1 * num2;
+        cal.setResult(result);
+        return cal;
     }
 
     @Override
     public CalcDTO divide(CalcDTO cal) {
-        return null;
+        int num1 = cal.getNum1();
+        int num2 = cal.getNum2();
+        int result = num1 / num2;
+        cal.setResult(result);
+        return cal;
     }
 
     @Override
     public CalcDTO remain(CalcDTO cal) {
-        return null;
+        int num1 = cal.getNum1();
+        int num2 = cal.getNum2();
+        int result = num1 % num2;
+        cal.setResult(result);
+        return cal;
     }
 }
