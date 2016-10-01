@@ -9,15 +9,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".CalcActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".calc.CalcActivity" />
+        <activity android:name=".member.LoginActivity" />
+        <activity android:name=".member.JoinActivity"></activity>
     </application>
 
 </manifest>
