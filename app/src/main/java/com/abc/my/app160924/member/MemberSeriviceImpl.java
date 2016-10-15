@@ -1,45 +1,51 @@
 package com.abc.my.app160924.member;
 
 import android.content.Context;
-import android.util.Log;
 
-import com.abc.my.app160924.util.Retval;
+import java.util.ArrayList;
 
 /**
  * Created by 1027 on 2016-10-01.
  */
 
 public class MemberSeriviceImpl implements MemberService {
+    @Override
+    public void regist(MemberDTO member) {
+        dao.insert(member);
+    }
 
-    //MemberDAO dao = new MemberDAO();
+    @Override
+    public ArrayList<MemberDTO> getList() {
+        return dao.selectList();
+    }
+
+    @Override
+    public ArrayList<MemberDTO> getListByName(MemberDTO member) {
+        return dao.selectListByName(member);
+    }
+
+    @Override
+    public MemberDTO getOne(MemberDTO member) {
+        return dao.selectOne(member);
+    }
+
+    @Override
+    public int count() {
+        return dao.count();
+    }
+
+    @Override
+    public void update(MemberDTO member) {
+        dao.update(member);
+    }
+
+    @Override
+    public void unregist(MemberDTO member) {
+        dao.delete(member);
+    }
+
     MemberDAO dao;
     public MemberSeriviceImpl(Context context) {
         this.dao = new MemberDAO(context);
-    }
-
-    @Override
-    public MemberDTO login(MemberDTO param) {
-        MemberDTO member = new MemberDTO();
-        member = dao.select(param);
-        if(member == null){
-            member.setId("NONE");
-            return member;
-        }else if(member.getPw().equals(param.getPw())){
-            return member;
-        }else{
-            member.setId("NO_MATCH");
-            return member;
-        }
-    }
-
-    @Override
-    public Retval Join(MemberDTO param) {
-        Log.i("*** DAO 에서 받은 ID :",param.getId());
-        Log.i("*** DAO 에서 받은 PW :",param.getPw());
-        Log.i("*** DAO 에서 받은 NAME :",param.getName());
-        Log.i("*** DAO 에서 받은 EMAIL :",param.getEmail());
-        Log.i("*** DAO 에서 받은 ADDR :",param.getAddr());
-        Log.i("*** DAO 에서 받은 PHONE :",param.getPhone());
-        return dao.insert(param);
     }
 }

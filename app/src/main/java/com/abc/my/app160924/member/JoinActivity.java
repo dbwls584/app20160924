@@ -6,10 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.abc.my.app160924.R;
-import com.abc.my.app160924.util.Retval;
 
 public class JoinActivity extends AppCompatActivity implements View.OnClickListener{
     EditText et_id,et_pw,et_name,et_email,et_addr,et_phone;
@@ -47,17 +45,8 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         member.setPhone(et_phone.getText().toString());
         switch (v.getId()){
             case(R.id.bt_submit) :
-                Retval val = service.Join(member);
-                if(val.getMessage().equals("FAIL")){
-                    Toast.makeText(JoinActivity.this
-                            , "회원가입 실패.. 재시도 바랍니다.",
-                            Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(JoinActivity.this
-                            , "회원가입 성공.. 로그인 바랍니다.",
-                            Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(JoinActivity.this,LoginActivity.class));
-                }
+                service.regist(member);
+                startActivity(new Intent(JoinActivity.this,LoginActivity.class));
                 break;
             case(R.id.bt_cancel) :
                 startActivity(new Intent(JoinActivity.this,LoginActivity.class));

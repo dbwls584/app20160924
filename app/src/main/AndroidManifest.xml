@@ -17,7 +17,8 @@
         </activity>
         <activity android:name=".calc.CalcActivity" />
         <activity android:name=".member.LoginActivity" />
-        <activity android:name=".member.JoinActivity"></activity>
+        <activity android:name=".member.JoinActivity" />
+        <activity android:name=".member.ListActivity"></activity>
     </application>
 
 </manifest>
