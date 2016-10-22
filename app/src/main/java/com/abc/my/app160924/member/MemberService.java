@@ -17,5 +17,5 @@ public interface MemberService {
     // UPDATE
     public void update(MemberDTO member); //회원수정
     // DELETE
-    public void unregist(MemberDTO member); //회원탈퇴
+    public void unregist(String id); //회원탈퇴
 }

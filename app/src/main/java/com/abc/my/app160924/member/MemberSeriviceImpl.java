@@ -40,8 +40,8 @@ public class MemberSeriviceImpl implements MemberService {
     }
 
     @Override
-    public void unregist(MemberDTO member) {
-        dao.delete(member);
+    public void unregist(String id) {
+        dao.delete(id);
     }
 
     MemberDAO dao;

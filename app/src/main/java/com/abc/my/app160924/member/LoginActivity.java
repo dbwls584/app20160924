@@ -3,6 +3,7 @@ package com.abc.my.app160924.member;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,6 +56,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             , "비밀번호가 일치하지 않습니다.",
                             Toast.LENGTH_SHORT).show();
                 }else{
+                    Log.d("로그인 {} !! ","성공");
                     startActivity(new Intent(LoginActivity.this,ListActivity.class));
                 }
                 break;

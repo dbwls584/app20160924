@@ -104,7 +104,7 @@ public class MemberDAO extends SQLiteOpenHelper{ //상속을받게해서 접근�
     //검색조건없이 전체 목록 조회
     public ArrayList<MemberDTO> selectList(){
         Log.i("*** DAO 전체조회 : ","selectlist() 진입");
-        String sql = "select"+
+        String sql = "select "+
                 String.format("%s,%s,%s,%s,%s,%s,%s",ID,PW,NAME,EMAIL,ADDR,PHONE,PHOTO)
                 +" from member;";
         SQLiteDatabase db = this.getReadableDatabase(); //이 db에 쓰는권한을 부여해라.
@@ -126,18 +126,13 @@ public class MemberDAO extends SQLiteOpenHelper{ //상속을받게해서 접근�
             //위에서 끝나게되면 값이 초기화되어서 저장되는게없으므로. 상위 스코프에게 데이터를넘긴다 저장한다.
             list.add(temp);  //데이터저장. 후 다시 초기화!(new MemberDTO())
         }while(cursor.moveToNext());
-        db.execSQL(sql);
-        MemberDTO member = new MemberDTO();
-        member.setId("hong"); //set을주면 null이 되지않는다.
-        member.setPw("1");
-        member.setName("홍길동");
         return list;
     }
 
     //검색조건이 있는 상황에서 목록 조회
     public ArrayList<MemberDTO> selectListByName(MemberDTO param){
         Log.i("*** DAO 전체조회 : ","selectListByName() 진입");
-        String sql = "select"+
+        String sql = "select "+
                 String.format("%s,%s,%s,%s,%s,%s,%s",ID,PW,NAME,EMAIL,ADDR,PHONE,PHOTO)
                 +String.format(" from %s where %s = '%s';",TABLE_NAME,NAME,param.getName());
         SQLiteDatabase db = this.getReadableDatabase(); //이 db에 쓰는권한을 부여해라.
@@ -207,22 +202,23 @@ public class MemberDAO extends SQLiteOpenHelper{ //상속을받게해서 접근�
     //DML(UPDATE)
     public void update(MemberDTO param){ //void로 변환....
         Log.i("*** DAO update :","update 진입");
-        String sql = String.format("update %s set",TABLE_NAME)
+        String sql = String.format("update %s set ",TABLE_NAME)
                 +String.format("%s = '%s'",PW,param.getPw())
-                +String.format("%s = '%s'",EMAIL,param.getEmail())
-                +String.format("%s = '%s'",ADDR,param.getAddr())
-                +String.format("%s = '%s'",PHOTO,param.getProfileImg())
+                +String.format(",%s = '%s'",EMAIL,param.getEmail())
+                +String.format(",%s = '%s'",ADDR,param.getAddr())
+                +String.format(",%s = '%s'",PHONE,param.getPhone())
                 +String.format("where %s = '%s';",ID,param.getId());
         SQLiteDatabase db = this.getWritableDatabase();
+        Log.d("실행된 sql {}",sql);
         db.execSQL(sql);
         db.close(); //write의 경우는 반드시 보안상의 이유로 db를 닫아준다.
     }
 
     //DML(DELETE)
-    public void delete(MemberDTO param){
+    public void delete(String id){
         Log.i("*** DAO delete :","delete 진입");
         String sql = String.format("delete from %s ",TABLE_NAME)
-                +String.format("where %s = '%s';",ID,param.getId());
+                +String.format("where %s = '%s';",ID,id);
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(sql);
         db.close();
