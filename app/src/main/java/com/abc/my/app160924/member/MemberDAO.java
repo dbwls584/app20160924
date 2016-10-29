@@ -8,6 +8,9 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import static com.abc.my.app160924.util.Constants.DB_NAME;
+import static com.abc.my.app160924.util.Constants.DB_VERSION;
+
 /**
  * Created by 1027 on 2016-10-01.
  */
@@ -23,8 +26,7 @@ public class MemberDAO extends SQLiteOpenHelper{ //상속을받게해서 접근�
     }//이 public으로 인해 database를 만들어줌.
     */
 
-    public static final String DB_NAME = "hanbit.db";
-    public static final int DB_VERSION = 1;
+
     public static final String ID = "id";
     public static final String PW = "pw";
     public static final String NAME = "name";
@@ -80,13 +82,26 @@ public class MemberDAO extends SQLiteOpenHelper{ //상속을받게해서 접근�
         db.execSQL( "insert into member(id,pw,name,email,addr,phone,profileImg)values"
                 +"('ha584', '1', '사유진', 'ha584@co.kr','37.5597680,126.9423080','010-9509-8467','default.jpg')"
         );
+        db.execSQL("create table if not exists message( "
+                +"        _id INTEGER PRIMARY KEY AUTOINCREMENT," //선언만하고 사람이건드는게아니다.
+                +"        receiver text,"
+                +"        content text,"
+                +"        send_date text,"
+                +"        id text, "
+                +"        FOREIGN KEY (id) REFERENCES member(id));");
+        db.execSQL( "insert into message(receiver,content,send_date,id)values"
+                +"('hong2', 'Hi!!! Thank you...', '2016-10-29 13:17', 'hong1')"
+        );
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("insert into Android values(null,'android_6.0.0',1);");
-        db.execSQL("insert into Android values(null,'android_6.0.1',2);");
+        db.execSQL("drop table if exists member;");
         this.onCreate(db);
+        db.execSQL("drop table if exists message;");
+        this.onCreate(db);
+        //db.execSQL("insert into Android values(null,'android_6.0.0',1);");
+        // db.execSQL("insert into Android values(null,'android_6.0.1',2);");
     }
     //DML(CREATE)
     public void insert(MemberDTO param){

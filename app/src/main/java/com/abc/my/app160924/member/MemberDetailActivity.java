@@ -8,13 +8,15 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.abc.my.app160924.R;
+import com.abc.my.app160924.hompage.HomepageActivity;
+import com.abc.my.app160924.message.MessageWriteActivity;
 import com.abc.my.app160924.util.Phone;
 
 
 public class MemberDetailActivity extends AppCompatActivity implements View.OnClickListener {
     MemberService servive;
     TextView tv_id,tv_pw,tv_name,tv_email,tv_addr,tv_phone;
-    Button bt_call,bt_list,bt_update,bt_map;
+    Button bt_call,bt_list,bt_update,bt_map,bt_email,bt_message;
     MemberDTO member; //필드에있는 것은 초기화하지않는다. MemberDTO member = new MemberDTO(); 이렇게하면 자바의 하이얼러키를 어기는거라서..안된다. 메소드안에는된다. 아래의 메소드..!
     Phone phone;
     @Override
@@ -47,11 +49,15 @@ public class MemberDetailActivity extends AppCompatActivity implements View.OnCl
         bt_list = (Button) findViewById(R.id.bt_list);
         bt_update = (Button) findViewById(R.id.bt_update);
         bt_map = (Button) findViewById(R.id.bt_map);
+        bt_message = (Button) findViewById(R.id.bt_message);
+        bt_email= (Button) findViewById(R.id.bt_email);
 
         bt_map.setOnClickListener(this);
         bt_call.setOnClickListener(this);
         bt_list.setOnClickListener(this);
         bt_update.setOnClickListener(this);
+        bt_email.setOnClickListener(this);
+        bt_message.setOnClickListener(this);
     }
 
 
@@ -72,6 +78,15 @@ public class MemberDetailActivity extends AppCompatActivity implements View.OnCl
                 Intent intent = new Intent(MemberDetailActivity.this,MemberUpdateActivity.class);
                 intent.putExtra("id",member.getId()); //눌렀을때 기존의값을 잘라버리고 홍길동선택 또 다른거누르면 또 잘라버리고 다른거 선택.
                 startActivity(intent); // 자바에서 클래스 내부의 값은 선언된 객체의 인스턴스로하고 외부는? 스트링으로 처리한다.
+                break;
+            case R.id.bt_email:
+                startActivity(new Intent(this, HomepageActivity.class));
+                //나중에만들때 화면이동하고싶으면 list 처럼.
+                break;
+            case R.id.bt_message:
+                Intent intent2 = new Intent(MemberDetailActivity.this, MessageWriteActivity.class);
+                intent2.putExtra("id",member.getId());
+                startActivity(intent2);
                 break;
         }
     }

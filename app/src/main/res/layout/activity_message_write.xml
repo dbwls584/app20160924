@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:weightSum="1">
+
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:gravity="center"
+            android:text="MESSAGE " />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TO : "
+        android:id="@+id/tv_receiver" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_id" />
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:lines="15"
+            android:id="@+id/et_write" />
+    <LinearLayout android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="40dp"
+            android:text="Send"
+            android:id="@+id/bt_send"
+            />
+        <Button
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+
+            android:text="cancel"
+            android:id="@+id/bt_cancel"
+            />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

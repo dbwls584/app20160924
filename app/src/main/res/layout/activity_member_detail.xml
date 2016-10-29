@@ -137,5 +137,24 @@
             />
     </LinearLayout>
 
+    <LinearLayout android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:text="Message"
+            android:id="@+id/bt_message"
+            />
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:text="Email"
+            android:id="@+id/bt_email"
+            />
+    </LinearLayout>
+
 
 </LinearLayout>
